@@ -1,40 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Run this project on your computer
 
-## Getting Started
+## Step 1: Install Node.js
+1. Go to https://nodejs.org
+2. Download the LTS version
+3. Run the installer and follow the prompts
 
-First, run the development server:
+## Step 2: Install Visual Studio Code
+1. Go to https://code.visualstudio.com
+2. Download Visual Studio Code
+3. Run the installer and follow the prompts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Step 3: Download the Project
+1. Click the green "Code" button on this site
+2. Choose "Download ZIP"
+3. Unzip the downloaded file to a folder on your computer
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Step 4: Open the Project in Visual Studio Code
+1. Open Visual Studio Code
+2. Click "File" > "Open Folder" in the top menu
+3. Select the folder you just unzipped
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Step 5: Install Dependencies
+1. In Visual Studio Code, click "Terminal" > "New Terminal" in the top menu
+2. In the terminal, type npm install and press Enter
+3. Wait for installation to complete
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Step 6: Run the Application
+1. In the terminal, type npm run dev and press Enter
+2. Wait for the "ready" message
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Step 7: View the Application
+1. Open your web browser
+2. Go to http://localhost:3000
+3. You should see the application running
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Congratulations! You've successfully set up and run the application on your computer :) 

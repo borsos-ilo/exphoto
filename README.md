@@ -22,12 +22,12 @@
 
 ## Step 5: Install Dependencies
 1. In Visual Studio Code, click "Terminal" > "New Terminal" in the top menu
-2. In the terminal, type npm install and press Enter
+2. In the terminal, type `npm install` and press Enter
 3. Wait for installation to complete
 
 ## Step 6: Run the Application
-1. In the terminal, type npm run dev and press Enter
-2. Wait for the "ready" message
+1. In the terminal, type `npm run dev` and press Enter
+2. Wait for the "ready" message in the terminal
 
 ## Step 7: View the Application
 1. Open your web browser

@@ -1,115 +1,74 @@
-import Image from "next/image";
-import localFont from "next/font/local";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [grid, setGrid] = useState([]);
+  const [counter, setCounter] = useState({ count: 0, percentage: 0 });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const folders = ['isti', 'ilo'];
+  const imageCount = 25;
+
+  const getRandomImage = useCallback(() => {
+    const randomFolder = folders[Math.floor(Math.random() * folders.length)];
+    return `images/${randomFolder}`;
+  }, []); // Empty dependency array as folders is not changing
+
+  const generateGrid = useCallback(() => {
+    let newGrid = [];
+    let iloCount = 0;
+
+    for (let i = 1; i <= imageCount; i++) {
+      const path = getRandomImage();
+      newGrid.push({ path, number: i });
+      if (path.includes('ilo')) {
+        iloCount++;
+      }
+    }
+
+    setGrid(newGrid);
+    setCounter({
+      count: iloCount,
+      percentage: ((iloCount / imageCount) * 100).toFixed(0)
+    });
+  }, [getRandomImage]); // Remove imageCount from dependencies as it's constant
+
+  useEffect(() => {
+    generateGrid();
+  }, []); // Empty dependency array to run only on mount
+
+  return (
+    <div className='flex flex-col items-center'>
+      <h1 className='font-orbitron text-4xl my-10'>
+        Random face generator
+      </h1>
+      <div className="grid grid-cols-5 gap-1 p-1 mb-5">
+        {grid.map((item, index) => (
+          <div
+            key={index}
+            className="w-12 h-12 md:w-24 md:h-24 bg-cover bg-center"
+            style={{ backgroundImage: `url('${item.path}/${item.number}.jpg')` }}
+          />
+        ))}
+      </div>
+      <button
+        onClick={generateGrid}
+        className="px-5 py-2 text-base bg-gradient-to-r from-teal-400 to-blue-500 cursor-pointer bg-blue-500 w-25 text-white font-body rounded-lg rounded"
+      >
+        Generate
+      </button>
+      <div className="grid grid-cols-2 w-1/2">
+        <div className="mt-5 text-lg text-center font-inconsolata">
+          Ilona: {counter.count} ({counter.percentage}%)
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="mt-5 text-lg text-center font-inconsolata">
+          Isti: {imageCount - counter.count} ({100 - counter.percentage}%)    
+        </div>
+      </div>
+      <div className="w-1/3 h-6 bg-[#4B878B] rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-[#921416] rounded-full"
+          style={{ width: `${counter.percentage}%` }}
+        ></div>
+      </div>
     </div>
   );
 }
